@@ -1,0 +1,39 @@
+From 2eceb22c41ca45c76ff7c2a89229812edef557f9 Mon Sep 17 00:00:00 2001
+From: root <root@localhost.localdomain>
+Date: Thu, 20 Jul 2023 13:58:50 +0800
+Subject: [PATCH] fix configure error of sw_64 platform
+
+---
+ build-aux/config.guess | 3 +++
+ build-aux/config.sub   | 1 +
+ 2 files changed, 4 insertions(+)
+
+diff --git a/build-aux/config.guess b/build-aux/config.guess
+index 7f74817..a056405 100755
+--- a/build-aux/config.guess
++++ b/build-aux/config.guess
+@@ -932,6 +932,9 @@ EOF
+     aarch64:Linux:*:*)
+ 	echo "$UNAME_MACHINE"-unknown-linux-"$LIBC"
+ 	exit ;;
++    sw_64:Linux:*:*)
++	echo "$UNAME_MACHINE"-unknown-linux-"$LIBC"
++	exit ;;
+     aarch64_be:Linux:*:*)
+ 	UNAME_MACHINE=aarch64_be
+ 	echo "$UNAME_MACHINE"-unknown-linux-"$LIBC"
+diff --git a/build-aux/config.sub b/build-aux/config.sub
+index 90bb8ae..e7ecaf1 100755
+--- a/build-aux/config.sub
++++ b/build-aux/config.sub
+@@ -1255,6 +1255,7 @@ case $cpu-$vendor in
+ 			| x86 | x86_64 | xc16x | xgate | xps100 \
+ 			| xstormy16 | xtensa* \
+ 			| ymp \
++			| sw_64 \
+ 			| z8k | z80)
+ 				;;
+ 
+-- 
+2.33.0
+
